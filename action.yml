@@ -1,0 +1,95 @@
+name: Grab the Artifacts 🎉
+description: Download and unleash the laughter from your workflow artifacts!
+author: umarhadi
+branding:
+  icon: download
+  color: yellow
+inputs:
+  github_token:
+    description: Your secret password to the GitHub treasure chest 🗝️
+    required: false
+    default: ${{ github.token }}
+  workflow:
+    description: |
+      The secret code name for the workflow.
+
+      If not specified, we'll magically guess it or just use the current one 🎩✨
+    required: false
+  workflow_conclusion:
+    description: |
+      The desired outcome of your workflow – success, failure, or maybe even unicorn status 🦄
+
+      Learn more at: https://docs.github.com/en/free-pro-team@latest/rest/reference/actions#list-workflow-runs
+    required: false
+    default: success
+  repo:
+    description: The mysterious repository name with owner (like actions/checkout)
+    required: false
+    default: ${{ github.repository }}
+  pr:
+    description: The secret pull request number 🕵️‍♂️
+    required: false
+  commit:
+    description: The magical commit hash 🔮
+    required: false
+  branch:
+    description: The branch that leads to your code adventure 🌳
+    required: false
+  event:
+    description: The type of mystical event that triggered all this magic 🎇
+    required: false
+  run_id:
+    description: The unique identifier for the magical workflow run 🏃‍♂️
+    required: false
+  run_number:
+    description: The enchanted run number 🔢
+    required: false
+  name:
+    description: The name of the artifact (download all artifacts if not specified)
+    required: false
+  name_is_regexp:
+    description: Treat the artifact name as a spell-binding regular expression to match artifacts with magical names 🧙
+    required: false
+    default: false
+  path:
+    description: The mystical location where the artifact will materialize 🌌
+    required: false
+    default: "./"
+  allow_forks:
+    description: Allow forks or summon forked repositories 🍴
+    required: false
+    default: true
+  check_artifacts:
+    description: Check if your workflow run possesses any artifacts (spoiler alert, its like a treasure hunt) 🕵️‍♀️
+    required: false
+    default: false
+  search_artifacts:
+    description: Search for artifacts in the magical history of workflow runs 🕰️
+    required: false
+    default: false
+  skip_unpack:
+    description: Choose to skip unpacking the downloaded artifacts (who needs unpacking spells anyway?) 🧳
+    required: false
+    default: false
+  dry_run:
+    description: Perform a dry run to see if your artifacts are in the mood to play hide-and-seek 🤔🔍
+    required: false
+  if_no_artifact_found:
+    required: false
+    description: |
+      Choose how to exit the action if no artifact is found:
+      
+      fail, warn, or just pretend nothing happened 🙈
+    default: fail
+outputs:
+  error_message:
+    description: The mysterious error message, in case the magic fails 🔮❌
+  dry_run:
+    description: A magical boolean output, true if the dry run was successful, false otherwise 🧙‍♂️✨
+  found_artifact:
+    description: Another mystical boolean output, true if the artifact was found, false otherwise 🎉🔍
+  artifacts:
+    description: A JSON array with details about the discovered artifacts – a magical record of your findings 📜✨
+runs:
+  using: node20
+  main: main.js
